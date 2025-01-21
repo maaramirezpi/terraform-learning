@@ -44,3 +44,17 @@ data "aws_iam_policy_document" "example" {
     ]
   }
 }
+
+
+resource "aws_s3_bucket" "finance" {
+  bucket = "maaramirezpi-finance"
+  tags = {
+    Description = "finance and payroll"
+  }
+}
+
+resource "aws_s3_bucket_object" "finance-2020" {
+  bucket = aws_s3_bucket.finance.id
+  key    = "mypet.txt"
+  content = "../local-file/mypet.txt"
+}
